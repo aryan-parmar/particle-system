@@ -41,7 +41,7 @@ let hue = 100
 //     }
 // });
 function init(){
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 250; i++) {
         x = Math.random()*canvas.width+2
         y = Math.random()*canvas.height+2
         hue+=10
@@ -87,7 +87,7 @@ function update(){
 }
 
 function animate(){
-    ctx.fillStyle = "rgba(0,0,0,0.5)"
+    ctx.fillStyle = "rgba(0,0,0,0.3)"
     ctx.fillRect(0,0,canvas.width,canvas.height)
     update()
     
