@@ -6,8 +6,6 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
-
-
 function draw(x,y,size,color){
     ctx.fillStyle = color;
     ctx.beginPath()
@@ -41,7 +39,12 @@ let hue = 100
 //     }
 // });
 function init(){
-    for (let i = 0; i < 250; i++) {
+    console.log(canvas.width)
+    // let a = Math.sqrt((canvas.height*canvas.width))/10
+    let a = (canvas.height*canvas.width)/5500
+    console.log(a)
+    
+    for (let i = 0; i < a; i++) {
         x = Math.random()*canvas.width+2
         y = Math.random()*canvas.height+2
         hue+=10
@@ -58,7 +61,7 @@ function update(){
             dx = Math.abs(particleList[i].x - particleList[j].x)
             dy = Math.abs(particleList[i].y - particleList[j].y)
             distance = Math.sqrt(dx*dx+dy*dy)
-            if(distance<200){
+            if(distance<160){
                 ctx.beginPath()
                 ctx.strokeStyle = particleList[i].color
                 ctx.lineWidth = 0.2
@@ -67,11 +70,19 @@ function update(){
                 ctx.stroke()
                 ctx.closePath()
             }
-            if(distance<100){
+            if(distance<20){
                 particleList[i].velocity.x *= -1
                 particleList[i].velocity.y *= -1
                 particleList[j].velocity.x *= -1
                 particleList[j].velocity.y *= -1
+                // particleList[i].color = 'hsl('+hue+',100%,50%)'
+            }
+            if(distance>150){
+                particleList[i].velocity.x *= -1
+                particleList[i].velocity.y *= -1
+                particleList[j].velocity.x *= -1
+                particleList[j].velocity.y *= -1
+                // particleList[i].color = 'hsl('+hue+',100%,50%)'
             }
         }
         particleList[i].update();
@@ -87,10 +98,9 @@ function update(){
 }
 
 function animate(){
-    ctx.fillStyle = "rgba(0,0,0,0.3)"
+    ctx.fillStyle = "rgba(0,0,0,0.6)"
     ctx.fillRect(0,0,canvas.width,canvas.height)
     update()
-    
     requestAnimationFrame(animate)
 }
 animate()
