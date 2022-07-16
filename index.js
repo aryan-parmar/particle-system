@@ -61,7 +61,7 @@ function update(){
             dx = Math.abs(particleList[i].x - particleList[j].x)
             dy = Math.abs(particleList[i].y - particleList[j].y)
             distance = Math.sqrt(dx*dx+dy*dy)
-            if(distance<160){
+            if(distance<120){
                 ctx.beginPath()
                 ctx.strokeStyle = particleList[i].color
                 ctx.lineWidth = 0.2
